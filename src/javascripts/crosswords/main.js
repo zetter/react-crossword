@@ -22,27 +22,6 @@ const initCrosswords = () => {
                     <Crossword data={JSON.parse(data)} />,
                     element
                 );
-
-                bean.on(element, 'click', $('.crossword__clue'), e => {
-                    e.preventDefault();
-
-                    const idMatch = e.currentTarget.hash.match(/#.*/);
-                    const newEntryId = idMatch && idMatch[0].replace('#', '');
-                    const newEntry = crosswordComponent.props.data.entries.find(
-                        val => val.id === newEntryId
-                    );
-                    const focussedEntry = crosswordComponent.clueInFocus();
-                    const isNewEntry =
-                        focussedEntry && focussedEntry.id !== newEntry.id;
-
-                    // Only focus the first cell in the new clue if it's not already
-                    // focussed. When focussing a cell in a new clue, we update the
-                    // hash fragment afterwards, in which case we do not want to
-                    // reset focus to the first cell.
-                    if (newEntry && (focussedEntry ? isNewEntry : true)) {
-                        crosswordComponent.focusFirstCellInClue(newEntry);
-                    }
-                });
             });
         });
 };

@@ -547,6 +547,11 @@ class Crossword extends Component {
         this.focusClue(entry.position.x, entry.position.y, entry.direction);
     }
 
+    focusFirstCellInClueById(clueId) {
+        const newEntry = this.props.data.entries.find(val => val.id === clueId);
+        this.focusFirstCellInClue(newEntry);
+    }
+
     focusCurrentCell() {
         if (this.state.cellInFocus) {
             this.focusHiddenInput(
@@ -794,6 +799,9 @@ class Crossword extends Component {
                 <Clues
                     clues={this.cluesData()}
                     focussed={focused}
+                    focusFirstCellInClueById={this.focusFirstCellInClueById.bind(
+                        this
+                    )}
                     setReturnPosition={this.setReturnPosition.bind(this)}
                 />
             </div>

@@ -7,8 +7,10 @@ import { isBreakpoint } from 'lib/detect';
 import { scrollTo } from 'lib/scroller';
 
 class Clue extends Component {
-    onClick() {
+    onClick(e) {
+        e.preventDefault();
         this.props.setReturnPosition();
+        this.props.focusFirstCellInClueById(this.props.id);
     }
 
     render() {
@@ -112,6 +114,9 @@ class Clues extends Component {
                         clue={clue.entry.clue}
                         hasAnswered={clue.hasAnswered}
                         isSelected={clue.isSelected}
+                        focusFirstCellInClueById={
+                            this.props.focusFirstCellInClueById
+                        }
                         setReturnPosition={() => {
                             this.props.setReturnPosition(window.scrollY);
                         }}
