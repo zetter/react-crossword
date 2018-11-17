@@ -100,10 +100,7 @@ class Crossword extends Component {
         });
 
         const entryId = window.location.hash.replace('#', '');
-        const entry = this.props.data.entries.find(val => val.id === entryId);
-        if (entry) {
-            this.focusFirstCellInClue(entry);
-        }
+        this.focusFirstCellInClueById(entryId);
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -549,7 +546,9 @@ class Crossword extends Component {
 
     focusFirstCellInClueById(clueId) {
         const newEntry = this.props.data.entries.find(val => val.id === clueId);
-        this.focusFirstCellInClue(newEntry);
+        if (newEntry) {
+            this.focusFirstCellInClue(newEntry);
+        }
     }
 
     focusCurrentCell() {
