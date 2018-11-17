@@ -82,8 +82,8 @@
   "scripts": {
     "eslint-fix": "eslint --color --fix src/javascripts",
     "eslint": "eslint --color src/javascripts",
-    "test": "jest"
     "sass-lint": "sass-lint --max-warnings 0 -v",
+    "test": "yarn eslint && yarn jest && yarn sass-lint"
   },
   "files": [
     "lib"
