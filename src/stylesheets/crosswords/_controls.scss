@@ -1,0 +1,48 @@
+.crossword__controls {
+    display: block;
+    margin-bottom: $gs-baseline / 2;
+
+    .button {
+        @include fs-textSans(4);
+        margin-bottom: $gs-baseline;
+    }
+
+    .button--primary {
+        background: $lifestyle-main;
+        border: 1px solid $lifestyle-main;
+        &:hover,
+        &:visited,
+        &:focus {
+            background-color: darken($lifestyle-main, 10%);
+            border-color: darken($lifestyle-main, 10%);
+        }
+    }
+
+    .button--secondary {
+        color: $brightness-46;
+        background: $brightness-93;
+        border: 1px solid $brightness-93;
+        &:hover,
+        &:visited,
+        &:focus {
+            background-color: darken($brightness-93, 10%);
+            border-color: darken($brightness-93, 10%);
+        }
+    }
+
+    .button--secondary.crossword__controls__button--confirm {
+        background-color: $brightness-7;
+        color: $brightness-100;
+        border: 0;
+    }
+}
+
+.crossword__controls_autosave_label {
+    @include fs-textSans(3);
+    margin-left: $gs-gutter / 4;
+    font-style: italic;
+}
+
+.crossword__controls__clue .button:last-child {
+    margin-right: 0;
+}
