@@ -1,11 +1,11 @@
 .crossword__clues-header {
     @include fs-header(1);
-    border-top: 1px solid $lifestyle-main;
     border-bottom: 1px dotted $brightness-86;
     padding-bottom: $gs-baseline * .75;
 }
 
-.crossword__clues-list {
+.crossword__clues-list, ol.crossword__clues-list {
+    padding: 0;
     margin: 0;
     margin-bottom: $gs-baseline;
     list-style-type: none;
@@ -13,6 +13,7 @@
 
 .crossword__clue {
     @include fs-textSans(4);
+    text-decoration: none;
     position: relative;
     padding: $gs-baseline * .25 $gs-baseline $gs-baseline * .25 0;
     margin: $gs-baseline * .25 0;
