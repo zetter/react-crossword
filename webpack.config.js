@@ -10,6 +10,10 @@ module.exports = {
         'crosswords',
         'crossword.js'
     ),
+    externals: {
+      react: 'react',
+      "react-dom": 'react-dom'
+    },
     output: {
         filename: 'index.js',
         path: path.join(__dirname, 'lib'),
