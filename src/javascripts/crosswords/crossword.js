@@ -4,8 +4,9 @@ import { findDOMNode } from 'react-dom';
 import fastdom from 'fastdom';
 import $ from 'lib/$';
 import mediator from 'lib/mediator';
-import { isIOS, isBreakpoint } from 'lib/detect';
+import { isBreakpoint } from 'lib/detect';
 import { scrollTo } from 'lib/scroller';
+import { addEventListener } from 'lib/events';
 import { AnagramHelper } from 'crosswords/anagram-helper/main';
 import debounce from 'lodash/debounce';
 import zip from 'lodash/zip';
@@ -60,7 +61,6 @@ class Crossword extends Component {
     componentDidMount() {
         // Sticky clue
         const $stickyClueWrapper = $(findDOMNode(this.stickyClueWrapper));
-        const $grid = $(findDOMNode(this.grid));
         const $game = $(findDOMNode(this.game));
 
         mediator.on(
@@ -73,39 +73,30 @@ class Crossword extends Component {
         );
         this.setGridHeight();
 
-        mediator.on('window:throttledScroll', () => {
-            const gridOffset = $grid.offset();
+        addEventListener(window, 'scroll', () => {
             const gameOffset = $game.offset();
             const stickyClueWrapperOffset = $stickyClueWrapper.offset();
             const scrollY = window.scrollY;
 
-            fastdom.write(() => {
-                // Clear previous state
-                $stickyClueWrapper
-                    .css('top', '')
-                    .css('bottom', '')
-                    .removeClass('is-fixed');
+            const scrollYPastGame = scrollY - gameOffset.top;
 
-                const scrollYPastGame = scrollY - gameOffset.top;
+            if (scrollYPastGame >= 0) {
+                const gameOffsetBottom = gameOffset.top + gameOffset.height;
 
-                if (scrollYPastGame >= 0) {
-                    const gridOffsetBottom = gridOffset.top + gridOffset.height;
-
-                    if (
-                        scrollY >
-                        gridOffsetBottom - stickyClueWrapperOffset.height
-                    ) {
-                        $stickyClueWrapper.css('top', 'auto').css('bottom', 0);
-                    } else if (isIOS()) {
-                        // iOS doesn't support sticky things when the keyboard
-                        // is open, so we use absolute positioning and
-                        // programatically update the value of top
-                        $stickyClueWrapper.css('top', scrollYPastGame);
-                    } else {
-                        $stickyClueWrapper.addClass('is-fixed');
-                    }
+                if (
+                    scrollY >
+                    gameOffsetBottom - stickyClueWrapperOffset.height
+                ) {
+                    $stickyClueWrapper.css({ top: 'auto', bottom: 0 });
+                } else {
+                    $stickyClueWrapper.css({
+                        top: scrollYPastGame,
+                        bottom: '',
+                    });
                 }
-            });
+            } else {
+                $stickyClueWrapper.css({ top: '', bottom: '' });
+            }
         });
     }
 
