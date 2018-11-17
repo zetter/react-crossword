@@ -1,9 +1,4 @@
 import React, { Component } from 'react';
-import { findDOMNode } from 'react-dom';
-import bonzo from 'bonzo';
-import fastdom from 'fastdom';
-import { scrollTo } from 'lib/scroller';
-import { isBreakpoint } from 'lib/detect';
 
 class HiddenInput extends Component {
     constructor(props) {
@@ -11,27 +6,6 @@ class HiddenInput extends Component {
         this.state = {
             value: this.props.value,
         };
-    }
-
-    componentDidUpdate() {
-        if (
-            isBreakpoint({
-                max: 'mobile',
-            })
-        ) {
-            fastdom.read(() => {
-                const offsets = bonzo(findDOMNode(this.input)).offset();
-                const clueHeight = document.getElementsByClassName(
-                    'crossword__sticky-clue'
-                )[0].offsetHeight;
-
-                scrollTo(
-                    offsets.top - offsets.height * 1.5 - clueHeight,
-                    250,
-                    'easeOutQuad'
-                );
-            });
-        }
     }
 
     onClick(event) {
