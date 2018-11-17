@@ -4,6 +4,15 @@ import { constants } from 'crosswords/constants';
 import { classNames } from 'crosswords/classNames';
 
 class Cell extends Component {
+    shouldComponentUpdate(nextProps) {
+        return (
+            this.props.value !== nextProps.value ||
+            this.props.isFocussed !== nextProps.isFocussed ||
+            this.props.isHighlighted !== nextProps.isHighlighted ||
+            this.props.isError !== nextProps.isError
+        );
+    }
+
     onClick(event) {
         event.preventDefault();
         this.props.handleSelect(this.props.x, this.props.y);
