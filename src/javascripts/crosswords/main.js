@@ -23,15 +23,6 @@ const initCrosswords = () => {
                     element
                 );
 
-                const entryId = window.location.hash.replace('#', '');
-                const entry = crosswordComponent.props.data.entries.find(
-                    val => val.id === entryId
-                );
-
-                if (entry) {
-                    crosswordComponent.focusFirstCellInClue(entry);
-                }
-
                 bean.on(element, 'click', $('.crossword__clue'), e => {
                     e.preventDefault();
 

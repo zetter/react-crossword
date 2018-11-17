@@ -98,6 +98,12 @@ class Crossword extends Component {
                 $stickyClueWrapper.css({ top: '', bottom: '' });
             }
         });
+
+        const entryId = window.location.hash.replace('#', '');
+        const entry = this.props.data.entries.find(val => val.id === entryId);
+        if (entry) {
+            this.focusFirstCellInClue(entry);
+        }
     }
 
     componentDidUpdate(prevProps, prevState) {
