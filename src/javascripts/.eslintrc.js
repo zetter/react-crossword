@@ -30,6 +30,7 @@ module.exports = {
         'react/prefer-stateless-function': 'off',
         'react/jsx-filename-extension': 'off',
         'react/prop-types': 'off',
+        'react/no-danger': 'off',
 
         // disallow naming variables 'guardian', because
         // window.guardian is our global config/settings object
