@@ -80,7 +80,8 @@
     "testEnvironment": "jest-environment-jsdom-global"
   },
   "scripts": {
-    "eslint-fix": "eslint --color --fix",
+    "eslint-fix": "eslint --color --fix src/javascripts",
+    "eslint": "eslint --color src/javascripts",
     "test": "jest"
   },
   "files": [
