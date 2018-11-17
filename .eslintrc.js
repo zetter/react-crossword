@@ -16,9 +16,6 @@ module.exports = {
         ],
         'no-extend-native': 'error',
         'func-style': ['error', 'expression', { allowArrowFunctions: true }],
-
-        // our own rules for frontend
-
         'prefer-destructuring': 'off',
     },
     // don't look for eslintrcs above here
