@@ -32,10 +32,7 @@ import {
     cellsForEntry,
 } from 'crosswords/helpers';
 import { keycodes } from 'crosswords/keycodes';
-import {
-    saveGridState,
-    loadGridState,
-} from 'crosswords/persistence';
+import { saveGridState, loadGridState } from 'crosswords/persistence';
 import { classNames } from 'crosswords/classNames';
 
 class Crossword extends Component {

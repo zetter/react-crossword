@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import closeCentralIcon from 'svgs/close.svg';
-import {
-    cellsForClue,
-    getAnagramClueData,
-} from 'crosswords/helpers';
+import { cellsForClue, getAnagramClueData } from 'crosswords/helpers';
 import shuffle from 'lodash/shuffle';
 import { ClueInput } from './clue-input';
 import { CluePreview } from './clue-preview';
