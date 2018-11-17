@@ -1,23 +1,28 @@
 module.exports = {
-    extends: ['airbnb', 'prettier'],
-    plugins: ['prettier'],
-    rules: {
-        'import/no-extraneous-dependencies': 'off',
-        // prettier settings
-        'prettier/prettier': [
-            'error',
-            {
-                trailingComma: 'es5',
-                singleQuote: true,
-                bracketSpacing: true,
-                tabWidth: 4,
-                jsxBracketSameLine: true
-            },
-        ],
-        'no-extend-native': 'error',
-        'func-style': ['error', 'expression', { allowArrowFunctions: true }],
-        'prefer-destructuring': 'off',
-    },
-    // don't look for eslintrcs above here
-    root: true,
+  extends: ['airbnb'],
+  root: true,
+  env: {
+    browser: true,
+    jest: true,
+  },
+  settings: {
+    'import/resolver': 'webpack',
+  },
+  rules: {
+    "consistent-return": "off",
+    "max-len": "off",
+    "prefer-destructuring": "off",
+    "no-param-reassign": "off",
+    "import/prefer-default-export": "off",
+    "react/destructuring-assignment": "off",
+    "react/no-danger": "off",
+    "react/prop-types": "off",
+    "react/jsx-filename-extension": "off",
+    "react/jsx-no-bind": "off",
+    "react/prefer-stateless-function": "off",
+    "react/button-has-type": "off",
+    "react/no-multi-comp": "off",
+    "react/no-find-dom-node": "off",
+    "react/no-access-state-in-setstate": "off"
+  }
 };
