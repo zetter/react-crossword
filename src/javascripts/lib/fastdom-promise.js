@@ -7,7 +7,7 @@ const promisify = fdaction => (fn, ctx) =>
                    be an arrow function as this will be bound with the current
                    context and cannot be rebound.
                 */
-            function() {
+            function fdactionResolve() {
                 try {
                     resolve(fn.call(this));
                 } catch (e) {

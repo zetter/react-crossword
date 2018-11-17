@@ -83,7 +83,7 @@ const updateBreakpoint = breakpoint => {
 };
 
 // this function has a Breakpoint as context, so we can't use fat arrows
-const onMatchingBreakpoint = function(mql) {
+const onMatchingBreakpoint = function onMatchingBreakpoint(mql) {
     if (mql && mql.matches) {
         updateBreakpoint(this);
     }
