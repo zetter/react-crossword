@@ -1,7 +1,8 @@
 {
   "name": "react-crossword",
   "version": "0.1.0",
-  "private": true,
+  "author": "Chris Zetter",
+  "private": false,
   "engines": {
     "yarn": ">=1.8.0"
   },
