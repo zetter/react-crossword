@@ -645,7 +645,7 @@ class Crossword extends Component {
           const cell = this.state.grid[coords.x][coords.y];
           const solution = cellAndSolution[1];
           return (
-            /^[A-Z]$/.test(cell.value) && cell.value !== solution
+            /^.$/.test(cell.value) && cell.value !== solution
           );
         })
         .map(cellAndSolution => cellAndSolution[0]);
