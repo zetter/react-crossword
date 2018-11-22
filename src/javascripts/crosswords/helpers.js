@@ -113,7 +113,7 @@ const cellsForEntry = entry => (isAcross(entry)
     y,
   })));
 
-const checkClueHasBeenAnswered = (grid, entry) => cellsForEntry(entry).every(position => /^[A-Z]$/.test(grid[position.x][position.y].value));
+const checkClueHasBeenAnswered = (grid, entry) => cellsForEntry(entry).every(position => /^.$/.test(grid[position.x][position.y].value));
 
 const otherDirection = direction => (direction === 'across' ? 'down' : 'across');
 
