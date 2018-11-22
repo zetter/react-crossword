@@ -54,6 +54,7 @@
     "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack": "^4.1.1",
     "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10",
     "webpack-merge": "^4.1.0"
   },
   "peerDependencies": {
@@ -80,7 +81,8 @@
     "eslint-fix": "eslint --color --fix src/javascripts",
     "eslint": "eslint --color src/javascripts",
     "sass-lint": "sass-lint --max-warnings 0 -v",
-    "test": "yarn eslint && yarn jest && yarn sass-lint"
+    "test": "yarn eslint && yarn jest && yarn sass-lint",
+    "examples": "yarn run webpack-dev-server --config webpack.config.examples.js"
   },
   "files": [
     "lib"
