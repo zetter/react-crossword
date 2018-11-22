@@ -78,8 +78,8 @@
     "testEnvironment": "jest-environment-jsdom-global"
   },
   "scripts": {
-    "eslint-fix": "eslint --color --fix src/javascripts",
-    "eslint": "eslint --color src/javascripts",
+    "eslint-fix": "eslint --color --fix src/javascripts examples *.js",
+    "eslint": "eslint --color src/javascripts examples *.js",
     "sass-lint": "sass-lint --max-warnings 0 -v",
     "test": "yarn eslint && yarn jest && yarn sass-lint",
     "examples": "yarn run webpack-dev-server --config webpack.config.examples.js"
