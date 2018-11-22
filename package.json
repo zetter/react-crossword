@@ -82,7 +82,8 @@
     "eslint": "eslint --color src/javascripts examples *.js",
     "sass-lint": "sass-lint --max-warnings 0 -v",
     "test": "yarn eslint && yarn jest && yarn sass-lint",
-    "examples": "yarn run webpack-dev-server --config webpack.config.examples.js"
+    "examples": "yarn run webpack-dev-server --config webpack.config.examples.js",
+    "build": "yarn run webpack --config webpack.config.js"
   },
   "files": [
     "lib"
