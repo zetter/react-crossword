@@ -116,14 +116,7 @@ class Crossword extends Component {
   onKeyDown(event) {
     const cell = this.state.cellInFocus;
 
-    if (event.keyCode === keycodes.tab) {
-      event.preventDefault();
-      if (event.shiftKey) {
-        this.focusPreviousClue();
-      } else {
-        this.focusNextClue();
-      }
-    } else if (!event.metaKey && !event.ctrlKey && !event.altKey) {
+    if (!event.metaKey && !event.ctrlKey && !event.altKey) {
       if (
         event.keyCode === keycodes.backspace
                 || event.keyCode === keycodes.delete

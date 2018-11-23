@@ -20,6 +20,14 @@ class HiddenInput extends Component {
     this.props.crossword.goToReturnPosition(event);
   }
 
+  onFocusPrevious() {
+    this.props.crossword.focusPreviousClue();
+  }
+
+  onFocusNext() {
+    this.props.crossword.focusNextClue();
+  }
+
   touchStart(event) {
     this.props.crossword.onClickHiddenInput(event);
   }
@@ -40,6 +48,13 @@ class HiddenInput extends Component {
         }}
       >
         <input
+          key="1"
+          type="text"
+          className="crossword__hidden-input-prev-next"
+          onFocus={this.onFocusPrevious.bind(this)}
+        />
+        <input
+          key="2"
           type="text"
           className="crossword__hidden-input"
           maxLength="1"
@@ -52,9 +67,13 @@ class HiddenInput extends Component {
           autoComplete="off"
           spellCheck="false"
           autoCorrect="off"
-          ref={(input) => {
-            this.input = input;
-          }}
+          ref={(input) => { this.input = input; }}
+        />
+        <input
+          key="3"
+          type="text"
+          className="crossword__hidden-input-prev-next"
+          onFocus={this.onFocusNext.bind(this)}
         />
       </div>
     );

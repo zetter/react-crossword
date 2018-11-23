@@ -14,3 +14,9 @@
     font-weight: 800;
     text-anchor: middle;
 }
+
+.crossword__hidden-input-prev-next {
+    position: absolute;
+    left: -1000px;
+    opacity: 0;
+}
