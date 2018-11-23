@@ -223,8 +223,9 @@ class Crossword extends Component {
 
   onClearAll() {
     this.setState({
-      grid: mapGrid(this.state.grid, (cell) => {
+      grid: mapGrid(this.state.grid, (cell, gridX, gridY) => {
         cell.value = '';
+        this.props.onMove({ x: gridX, y: gridY, value: '' });
         return cell;
       }),
     });
@@ -251,6 +252,7 @@ class Crossword extends Component {
             cellsInFocus.some(c => c.x === gridX && c.y === gridY)
           ) {
             cell.value = '';
+            this.props.onMove({ x: gridX, y: gridY, value: '' });
           }
           return cell;
         }),
@@ -317,12 +319,15 @@ class Crossword extends Component {
     }
   }
 
-  setCellValue(x, y, value) {
+  setCellValue(x, y, value, triggerOnMoveCallback = true) {
     this.setState({
       grid: mapGrid(this.state.grid, (cell, gridX, gridY) => {
         if (gridX === x && gridY === y) {
           cell.value = value;
           cell.isError = false;
+          if (triggerOnMoveCallback) {
+            this.props.onMove({ x, y, value });
+          }
         }
 
         return cell;
@@ -620,6 +625,7 @@ class Crossword extends Component {
               : y - entry.position.y;
 
             cell.value = entry.solution[n];
+            this.props.onMove({ x, y, value: cell.value });
           }
 
           return cell;
@@ -649,6 +655,7 @@ class Crossword extends Component {
             badCells.some(bad => bad.x === gridX && bad.y === gridY)
           ) {
             cell.value = '';
+            this.props.onMove({ x: gridX, y: gridY, value: '' });
           }
 
           return cell;
@@ -784,5 +791,9 @@ class Crossword extends Component {
     );
   }
 }
+
+Crossword.defaultProps = {
+  onMove: () => {},
+};
 
 export default Crossword;
