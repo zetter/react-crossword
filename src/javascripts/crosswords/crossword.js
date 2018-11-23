@@ -648,30 +648,12 @@ class Crossword extends Component {
           if (
             badCells.some(bad => bad.x === gridX && bad.y === gridY)
           ) {
-            cell.isError = true;
             cell.value = '';
           }
 
           return cell;
         }),
       });
-
-      setTimeout(() => {
-        this.setState({
-          grid: mapGrid(this.state.grid, (cell, gridX, gridY) => {
-            if (
-              badCells.some(
-                bad => bad.x === gridX && bad.y === gridY,
-              )
-            ) {
-              cell.isError = false;
-              cell.value = '';
-            }
-
-            return cell;
-          }),
-        });
-      }, 150);
     }
   }
 
