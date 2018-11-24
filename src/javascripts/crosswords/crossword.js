@@ -224,13 +224,16 @@ class Crossword extends Component {
   onClearAll() {
     this.setState({
       grid: mapGrid(this.state.grid, (cell, gridX, gridY) => {
+        const previousValue = cell.value;
         cell.value = '';
-        this.props.onMove({ x: gridX, y: gridY, value: '' });
+        this.props.onMove({
+          x: gridX, y: gridY, value: '', previousValue,
+        });
         return cell;
       }),
     });
 
-    this.save();
+    this.props.saveGrid(this.props.id, this.state.grid);
   }
 
   onClearSingle() {
@@ -251,8 +254,11 @@ class Crossword extends Component {
           if (
             cellsInFocus.some(c => c.x === gridX && c.y === gridY)
           ) {
+            const previousValue = cell.value;
             cell.value = '';
-            this.props.onMove({ x: gridX, y: gridY, value: '' });
+            this.props.onMove({
+              x: gridX, y: gridY, value: '', previousValue,
+            });
           }
           return cell;
         }),
@@ -323,10 +329,13 @@ class Crossword extends Component {
     this.setState({
       grid: mapGrid(this.state.grid, (cell, gridX, gridY) => {
         if (gridX === x && gridY === y) {
+          const previousValue = cell.value;
           cell.value = value;
           cell.isError = false;
           if (triggerOnMoveCallback) {
-            this.props.onMove({ x, y, value });
+            this.props.onMove({
+              x, y, value, previousValue,
+            });
           }
         }
 
@@ -623,9 +632,11 @@ class Crossword extends Component {
             const n = entry.direction === 'across'
               ? x - entry.position.x
               : y - entry.position.y;
-
+            const previousValue = cell.value;
             cell.value = entry.solution[n];
-            this.props.onMove({ x, y, value: cell.value });
+            this.props.onMove({
+              x, y, value: cell.value, previousValue,
+            });
           }
 
           return cell;
@@ -654,8 +665,11 @@ class Crossword extends Component {
           if (
             badCells.some(bad => bad.x === gridX && bad.y === gridY)
           ) {
+            const previousValue = cell.value;
             cell.value = '';
-            this.props.onMove({ x: gridX, y: gridY, value: '' });
+            this.props.onMove({
+              x: gridX, y: gridY, value: '', previousValue,
+            });
           }
 
           return cell;
