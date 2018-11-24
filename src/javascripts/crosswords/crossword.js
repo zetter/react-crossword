@@ -50,7 +50,7 @@ class Crossword extends Component {
         dimensions.rows,
         dimensions.cols,
         this.props.data.entries,
-        loadGridState(this.props.data.id),
+        this.props.loadGrid(this.props.id),
       ),
       cellInFocus: null,
       directionOfEntry: null,
@@ -127,7 +127,7 @@ class Crossword extends Component {
             this.focusPrevious();
           } else {
             this.setCellValue(cell.x, cell.y, '');
-            this.save();
+            this.props.saveGrid(this.props.id, this.state.grid);
           }
         }
       } else if (event.keyCode === keycodes.left) {
@@ -202,23 +202,23 @@ class Crossword extends Component {
 
   onCheat() {
     this.allHighlightedClues().forEach(clue => this.cheat(clue));
-    this.save();
+    this.props.saveGrid(this.props.id, this.state.grid);
   }
 
   onCheck() {
     // 'Check this' checks single and grouped clues
     this.allHighlightedClues().forEach(clue => this.check(clue));
-    this.save();
+    this.props.saveGrid(this.props.id, this.state.grid);
   }
 
   onSolution() {
     this.props.data.entries.forEach(clue => this.cheat(clue));
-    this.save();
+    this.props.saveGrid(this.props.id, this.state.grid);
   }
 
   onCheckAll() {
     this.props.data.entries.forEach(clue => this.check(clue));
-    this.save();
+    this.props.saveGrid(this.props.id, this.state.grid);
   }
 
   onClearAll() {
@@ -264,7 +264,7 @@ class Crossword extends Component {
         }),
       });
 
-      this.save();
+      this.props.saveGrid(this.props.id, this.state.grid);
     }
   }
 
@@ -361,7 +361,7 @@ class Crossword extends Component {
             && cell
     ) {
       this.setCellValue(cell.x, cell.y, characterUppercase);
-      this.save();
+      this.props.saveGrid(this.props.id, this.state.grid);
       this.focusNext();
     }
   }
@@ -618,10 +618,6 @@ class Crossword extends Component {
     });
   }
 
-  save() {
-    saveGridState(this.props.data.id, this.state.grid);
-  }
-
   cheat(entry) {
     const cells = cellsForEntry(entry);
 
@@ -808,6 +804,8 @@ class Crossword extends Component {
 
 Crossword.defaultProps = {
   onMove: () => {},
+  loadGrid: id => loadGridState(id),
+  saveGrid: (id, grid) => saveGridState(id, grid),
 };
 
 export default Crossword;
