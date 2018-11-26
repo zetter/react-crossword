@@ -3,9 +3,6 @@
   "version": "0.1.1",
   "author": "Chris Zetter",
   "private": false,
-  "engines": {
-    "yarn": ">=1.8.0"
-  },
   "dependencies": {
     "bean": "~1.0.14",
     "bonzo": "~2.0.0",
