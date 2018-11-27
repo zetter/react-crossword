@@ -352,6 +352,17 @@ class Crossword extends Component {
     this.returnPosition = position;
   }
 
+  updateGrid(gridState) {
+    this.setState({
+      grid: buildGrid(
+        this.rows,
+        this.columns,
+        this.props.data.entries,
+        gridState,
+      ),
+    });
+  }
+
   insertCharacter(character) {
     const characterUppercase = character.toUpperCase();
     const cell = this.state.cellInFocus;
