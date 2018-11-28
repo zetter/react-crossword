@@ -716,6 +716,7 @@ class Crossword extends Component {
 
     const anagramHelper = this.state.showAnagramHelper && (
     <AnagramHelper
+      key={focused.id}
       crossword={this}
       focussedEntry={focused}
       entries={this.props.data.entries}

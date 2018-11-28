@@ -15,13 +15,6 @@ class AnagramHelper extends Component {
     };
   }
 
-  componentWillReceiveProps(next) {
-    // reset on clue change
-    if (next.clue !== this.props.focussedEntry) {
-      this.reset();
-    }
-  }
-
   onClueInput(text) {
     if (!/\s|\d/g.test(text)) {
       this.setState({
