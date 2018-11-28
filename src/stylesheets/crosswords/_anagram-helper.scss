@@ -120,14 +120,17 @@
     border-right: 1px solid $brightness-7;
 }
 
+.crossword__anagram-helper__cell--with-hyphen {
+    position: relative;
+}
+
 .crossword__anagram-helper__cell--with-hyphen::after {
     content: '-';
-    padding-left: 27px;
-    font-size: 24px;
-
-    @include mq($until: mobileLandscape) {
-        padding-left: 19px;
-    }
+    position: absolute;
+    font-size: 20px;
+    right: -5px;
+    top: -2px;
+    z-index: 10;
 }
 
 .crossword__anagram-helper-shuffler {
