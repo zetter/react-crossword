@@ -145,7 +145,7 @@ Here's an example set of data to create the crossword pictured above and in the 
 
 ### The Grid
 
-Some functions require or return the state of the crossword grid. This is a 2-dimensional array holding the values in each cell. Incomplete cells or cells that are not part of any answer are represented as the empty string (`""`). Note that it follows the convention of indexing by column first (x) and then row (y) so the printed array is transposed compared to how the crossword grid appears. For example, for a crossword of:
+Some functions require or return the state of the crossword grid. This is a 2-dimensional array holding the values in each cell. Incomplete cells or cells that are not part of any answer are represented as the empty string (`""`). Note that it follows the convention of indexing by column first (x) and then row (y) so the printed array is transposed compared to how the crossword grid appears. For example, a crossword of:
 
 <table>
 <tr>
