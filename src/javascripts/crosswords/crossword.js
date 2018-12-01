@@ -127,7 +127,7 @@ class Crossword extends Component {
             this.focusPrevious();
           } else {
             this.setCellValue(cell.x, cell.y, '');
-            this.props.saveGrid(this.props.id, this.state.grid);
+            this.saveGrid();
           }
         }
       } else if (event.keyCode === keycodes.left) {
@@ -202,23 +202,23 @@ class Crossword extends Component {
 
   onCheat() {
     this.allHighlightedClues().forEach(clue => this.cheat(clue));
-    this.props.saveGrid(this.props.id, this.state.grid);
+    this.saveGrid();
   }
 
   onCheck() {
     // 'Check this' checks single and grouped clues
     this.allHighlightedClues().forEach(clue => this.check(clue));
-    this.props.saveGrid(this.props.id, this.state.grid);
+    this.saveGrid();
   }
 
   onSolution() {
     this.props.data.entries.forEach(clue => this.cheat(clue));
-    this.props.saveGrid(this.props.id, this.state.grid);
+    this.saveGrid();
   }
 
   onCheckAll() {
     this.props.data.entries.forEach(clue => this.check(clue));
-    this.props.saveGrid(this.props.id, this.state.grid);
+    this.saveGrid();
   }
 
   onClearAll() {
@@ -233,7 +233,7 @@ class Crossword extends Component {
       }),
     });
 
-    this.props.saveGrid(this.props.id, this.state.grid);
+    this.saveGrid();
   }
 
   onClearSingle() {
@@ -264,7 +264,7 @@ class Crossword extends Component {
         }),
       });
 
-      this.props.saveGrid(this.props.id, this.state.grid);
+      this.saveGrid();
     }
   }
 
@@ -372,7 +372,7 @@ class Crossword extends Component {
             && cell
     ) {
       this.setCellValue(cell.x, cell.y, characterUppercase);
-      this.props.saveGrid(this.props.id, this.state.grid);
+      this.saveGrid();
       this.focusNext();
     }
   }
@@ -709,6 +709,11 @@ class Crossword extends Component {
         return entryHasCell(entry, x, y);
       })
       : false;
+  }
+
+  saveGrid() {
+    const entries = this.state.grid.map(row => row.map(cell => cell.value));
+    this.props.saveGrid(this.props.id, entries);
   }
 
   render() {

@@ -5,10 +5,8 @@ const localStorageKey = id => `crosswords.${id}`;
 const saveGridState = (id, grid) => {
   /* Take only the entries from the grid. Other state information like what
        cells are highlighted ought not to be persisted. */
-  const entries = grid.map(row => row.map(cell => cell.value));
-
   try {
-    return localStorage.set(localStorageKey(id), entries);
+    return localStorage.set(localStorageKey(id), grid);
   } catch (e) {
     return false;
   }
