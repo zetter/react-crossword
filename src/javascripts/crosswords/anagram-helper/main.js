@@ -10,6 +10,7 @@ class AnagramHelper extends Component {
   constructor() {
     super();
     this.state = {
+      letters: [],
       clueInput: '',
       showInput: true,
     };
@@ -69,6 +70,7 @@ class AnagramHelper extends Component {
   shuffle() {
     if (this.canShuffle()) {
       this.setState({
+        letters: this.shuffleWord(this.state.clueInput, this.entries()),
         showInput: false,
       });
     }
@@ -87,6 +89,16 @@ class AnagramHelper extends Component {
     return !!this.state.clueInput && this.state.clueInput.length > 0;
   }
 
+  entries() {
+    const cells = cellsForClue(
+      this.props.entries,
+      this.props.focussedEntry,
+    );
+    return cells.map(coords => Object.assign({}, this.props.grid[coords.x][coords.y], {
+      key: `${coords.x},${coords.y}`,
+    }));
+  }
+
   render() {
     const closeIcon = {
       __html: closeCentralIcon,
@@ -95,15 +107,6 @@ class AnagramHelper extends Component {
       this.props.entries,
       this.props.focussedEntry,
     );
-    const cells = cellsForClue(
-      this.props.entries,
-      this.props.focussedEntry,
-    );
-    const entries = cells.map(coords => Object.assign({}, this.props.grid[coords.x][coords.y], {
-      key: `${coords.x},${coords.y}`,
-    }));
-
-    const letters = this.shuffleWord(this.state.clueInput, entries);
 
     const inner = this.state.showInput ? (
       <ClueInput
@@ -113,7 +116,7 @@ class AnagramHelper extends Component {
         onEnter={this.shuffle.bind(this)}
       />
     ) : (
-      <Ring letters={letters} />
+      <Ring letters={this.state.letters} />
     );
 
     return (
@@ -148,8 +151,8 @@ class AnagramHelper extends Component {
         </button>
         <CluePreview
           clue={clue}
-          entries={entries}
-          letters={letters}
+          entries={this.entries()}
+          letters={this.state.letters}
           hasShuffled={!this.state.showInput}
         />
       </div>
