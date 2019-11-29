@@ -698,7 +698,7 @@ class Crossword extends Component {
   }
 
   hasSolutions() {
-    const dateSolutionAvailable = this.props.data.dateSolutionAvailable;
+    const { dateSolutionAvailable } = this.props.data;
     const timeNow = new Date().getTime();
     const solutionShouldBeAvailable =
       !dateSolutionAvailable || dateSolutionAvailable < timeNow;
