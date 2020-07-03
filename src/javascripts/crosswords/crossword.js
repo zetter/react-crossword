@@ -41,6 +41,7 @@ class Crossword extends Component {
     super(props);
     const dimensions = this.props.data.dimensions;
 
+    this.instructions = this.props.data.instructions;
     this.columns = dimensions.cols;
     this.rows = dimensions.rows;
     this.clueMap = buildClueMap(this.props.data.entries);
@@ -811,6 +812,12 @@ class Crossword extends Component {
           clueInFocus={focused}
           crossword={this}
         />
+        <div className="crossword__instructions">
+          <header className="instructions__title">
+            Special instructions
+          </header>
+          {this.instructions}
+        </div>
         <Clues
           clues={this.cluesData()}
           focussed={focused}

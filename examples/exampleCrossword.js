@@ -8,6 +8,7 @@ ReactDOM.render(<Crossword data={
       number: 1,
       name: 'Simple Crossword 1',
       date: 1542326400000,
+      instructions: "Numbers in the wordplay of the clues all have something in common and require translation",
       entries: [
         {
           id: '1-across',
