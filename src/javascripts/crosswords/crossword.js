@@ -812,12 +812,14 @@ class Crossword extends Component {
           clueInFocus={focused}
           crossword={this}
         />
-        <div className="crossword__instructions">
-          <header className="instructions__title">
-            Special instructions
-          </header>
-          {this.instructions}
-        </div>
+        {this.instructions && this.instructions.length > 0 &&
+          <div className="crossword__instructions">
+            <header className="instructions__title">
+              Special instructions
+         </header>
+            {this.instructions}
+          </div>
+        }
         <Clues
           clues={this.cluesData()}
           focussed={focused}
