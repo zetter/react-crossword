@@ -1,7 +1,6 @@
 .crossword__instructions {
     font-family: $f-sans-serif-text;
-    font-size: 15px;
-    line-height: 18px;
+    @include fs-textSans(4);
     width: 100%;
     clear: both;
 
