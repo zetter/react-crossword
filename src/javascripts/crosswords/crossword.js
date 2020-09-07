@@ -426,29 +426,78 @@ class Crossword extends Component {
     }
   }
 
+  /**
+   * Find the next editable cell on the current row/column (wrap on grid overflow).
+   * @param {number} deltaX - Horizontal delta (-1, 0, 1).
+   * @param {number} deltaY - Vertical delta (-1, 0, 1).
+  */
+  findNextEditableCell(deltaX, deltaY) {
+    const currentCell = this.state.cellInFocus;
+
+    //guard statement
+    if (!currentCell || !this.state.grid[currentCell.x] 
+                     || !this.state.grid[currentCell.x][currentCell.y]
+    ) {
+      return null;
+    }
+
+    let x = currentCell.x;
+    let y = currentCell.y;
+    let cell;
+
+    //get the next position
+    const nextPos = (i, amount, max) => {
+      //increment/decrement
+      i += amount;
+
+      //wrap if out of bounds
+      if (i === -1) {
+        return max - 1;
+      }
+      else if (i === max) {
+        return 0;
+      }
+
+      return i;
+    };
+
+    //find next editable cell on row/column
+    while (!cell) {
+      //move the x/y position along
+      if (deltaY === 1 || deltaY === -1) {
+        y = nextPos(y, deltaY, this.rows);
+      } else if (deltaX === 1 || deltaX === -1) {
+        x = nextPos(x, deltaX, this.columns);
+      }
+
+      //update cell if editable
+      const tempCell = this.state.grid[x][y];
+      if (tempCell && tempCell.isEditable) {
+        cell = {x, y};
+      }
+    }
+
+    return cell;
+  }
+
   moveFocus(deltaX, deltaY) {
-    const cell = this.state.cellInFocus;
+    const cell = this.findNextEditableCell(deltaX, deltaY);
 
     if (!cell) {
       return;
     }
 
-    const x = cell.x + deltaX;
-    const y = cell.y + deltaY;
+    const clue = cluesFor(this.clueMap, cell.x, cell.y);
     let direction = 'down';
 
-    if (
-      this.state.grid[x]
-            && this.state.grid[x][y]
-            && this.state.grid[x][y].isEditable
+    //keep current direction if possible
+    if (deltaX !== 0 && clue['across'] ||
+        deltaY !== 0 && !clue['down']
     ) {
-      if (deltaY !== 0) {
-        direction = 'down';
-      } else if (deltaX !== 0) {
-        direction = 'across';
-      }
-      this.focusClue(x, y, direction);
+      direction = 'across';
     }
+
+    this.focusClue(cell.x, cell.y, direction);
   }
 
   isAcross() {
