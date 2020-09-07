@@ -552,6 +552,8 @@ class Crossword extends Component {
         document.title,
         `#${clue.id}`,
       );
+
+      this.props.onFocusClue({x, y, clueId: clue.id});
     }
   }
 
@@ -821,6 +823,7 @@ class Crossword extends Component {
 
 Crossword.defaultProps = {
   onMove: () => {},
+  onFocusClue: () => {},
   loadGrid: id => loadGridState(id),
   saveGrid: (id, grid) => saveGridState(id, grid),
 };
