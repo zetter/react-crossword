@@ -1,6 +1,6 @@
 {
   "name": "react-crossword",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "author": "Chris Zetter",
   "private": false,
   "dependencies": {
