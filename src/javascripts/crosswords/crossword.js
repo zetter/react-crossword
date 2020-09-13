@@ -434,7 +434,6 @@ class Crossword extends Component {
   findNextEditableCell(deltaX, deltaY) {
     const currentCell = this.state.cellInFocus;
 
-    // guard statement
     if (!currentCell || !this.state.grid[currentCell.x]
                      || !this.state.grid[currentCell.x][currentCell.y]
     ) {
@@ -445,12 +444,9 @@ class Crossword extends Component {
     let y = currentCell.y;
     let cell;
 
-    // get the next position
     const nextPos = (i, amount, max) => {
-      // increment/decrement
       i += amount;
 
-      // wrap if out of bounds
       if (i === -1) {
         return max - 1;
       }
@@ -463,14 +459,12 @@ class Crossword extends Component {
 
     // find next editable cell on row/column
     while (!cell) {
-      // move the x/y position along
       if (deltaY === 1 || deltaY === -1) {
         y = nextPos(y, deltaY, this.rows);
       } else if (deltaX === 1 || deltaX === -1) {
         x = nextPos(x, deltaX, this.columns);
       }
 
-      // update cell if editable
       const tempCell = this.state.grid[x][y];
       if (tempCell && tempCell.isEditable) {
         cell = { x, y };
