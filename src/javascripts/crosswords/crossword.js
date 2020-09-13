@@ -434,8 +434,8 @@ class Crossword extends Component {
   findNextEditableCell(deltaX, deltaY) {
     const currentCell = this.state.cellInFocus;
 
-    //guard statement
-    if (!currentCell || !this.state.grid[currentCell.x] 
+    // guard statement
+    if (!currentCell || !this.state.grid[currentCell.x]
                      || !this.state.grid[currentCell.x][currentCell.y]
     ) {
       return null;
@@ -445,35 +445,35 @@ class Crossword extends Component {
     let y = currentCell.y;
     let cell;
 
-    //get the next position
+    // get the next position
     const nextPos = (i, amount, max) => {
-      //increment/decrement
+      // increment/decrement
       i += amount;
 
-      //wrap if out of bounds
+      // wrap if out of bounds
       if (i === -1) {
         return max - 1;
       }
-      else if (i === max) {
+      if (i === max) {
         return 0;
       }
 
       return i;
     };
 
-    //find next editable cell on row/column
+    // find next editable cell on row/column
     while (!cell) {
-      //move the x/y position along
+      // move the x/y position along
       if (deltaY === 1 || deltaY === -1) {
         y = nextPos(y, deltaY, this.rows);
       } else if (deltaX === 1 || deltaX === -1) {
         x = nextPos(x, deltaX, this.columns);
       }
 
-      //update cell if editable
+      // update cell if editable
       const tempCell = this.state.grid[x][y];
       if (tempCell && tempCell.isEditable) {
-        cell = {x, y};
+        cell = { x, y };
       }
     }
 
@@ -490,9 +490,9 @@ class Crossword extends Component {
     const clue = cluesFor(this.clueMap, cell.x, cell.y);
     let direction = 'down';
 
-    //keep current direction if possible
-    if (deltaX !== 0 && clue['across'] ||
-        deltaY !== 0 && !clue['down']
+    // keep current direction if possible
+    if ((deltaX !== 0 && clue.across)
+        || (deltaY !== 0 && !clue.down)
     ) {
       direction = 'across';
     }
@@ -602,7 +602,7 @@ class Crossword extends Component {
         `#${clue.id}`,
       );
 
-      this.props.onFocusClue({x, y, clueId: clue.id});
+      this.props.onFocusClue({ x, y, clueId: clue.id });
     }
   }
 
