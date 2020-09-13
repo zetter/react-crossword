@@ -138,7 +138,7 @@ class AnagramHelper extends Component {
           onClick={this.reset.bind(this)}
           data-link-name="Start Again"
         >
-                    start again
+          start again
         </button>
         <button
           className={`button button--large ${
@@ -147,7 +147,7 @@ class AnagramHelper extends Component {
           onClick={this.shuffle.bind(this)}
           data-link-name="Shuffle"
         >
-                    shuffle
+          shuffle
         </button>
         <CluePreview
           clue={clue}

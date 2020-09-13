@@ -6,7 +6,10 @@ module.exports = {
     jest: true,
   },
   settings: {
-    'import/resolver': 'webpack',
+    'import/resolver': {
+      node: {},
+      webpack: {}
+    }
   },
   rules: {
     "consistent-return": "off",
