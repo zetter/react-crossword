@@ -27,7 +27,7 @@ describe('easing', () => {
 
     test(`easingFunctions.${name}()`, () => {
       values.forEach(([actual, expected]) => {
-        expect(easingFunctions[name](actual)).toBe(expected);
+        expect(easingFunctions[name](actual)).toBeCloseTo(expected);
       });
     });
   });
