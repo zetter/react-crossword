@@ -42,7 +42,7 @@
     "prettier": "1.13.4",
     "react": ">=16.4.1",
     "react-dom": ">=16.4.1",
-    "sass-lint": "~1.10.2",
+    "sass-lint": "~1.13.1",
     "sass-loader": "^7.1.0",
     "sass-mq": "~3.3.2",
     "style-loader": "^0.23.1",
